@@ -1,0 +1,13 @@
+﻿@model int
+<div class="container row">
+	<div class="col-12 text-center">
+		<h1 class="text-primary text-center">Pagesa eshte realizuar me sukses!!</h1>
+		Porosia : @Model <br /><br />
+		<img src="~/imazhet/orderPlaced.jpg" class="img-thumbnail" />
+	</div>
+	<div class="col-12 text-center" style="color:maroon">
+		<br />
+		Pagesa eshte zbatuar me sukses! <br />
+		<a asp-controller="Porosia" asp-action="Detajet" asp-route-porosiaId="Model" class="btn btn-primary">Kthehu</a>
+	</div>
+</div>

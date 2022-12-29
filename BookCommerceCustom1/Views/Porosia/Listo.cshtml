@@ -1,0 +1,89 @@
+﻿@{
+	var statusi = Context.Request.Query["statusi"];
+	var nePritjeCss = "text-primary";
+	var neProcesCss = "text-primary";
+	var teKompletuaraCss = "text-primary";
+	var teGjithaCss = "text-primary";	
+	var teAprovuaraCss = "text-primary";
+
+	switch (statusi)
+	{
+		case "NePritje":
+			nePritjeCss = "active text-white";
+			break;
+		case "NeProces":
+			neProcesCss = "active text-white";
+			break;
+		case "TeKompletuara":
+			teKompletuaraCss = "active text-white";
+			break;
+		case "TeAprovuara":
+			teAprovuaraCss = "active text-white";
+			break;
+		case "TeGjitha":
+			teGjithaCss = "active text-white";
+			break;
+	
+	}
+}
+
+<div class="row p-3">
+	<div class="d-flex justify-content-between pt-4">
+		<div class="p-2">
+			<h2 class="text-primary">Lista e produkteve</h2>
+		</div>
+		<div class="p-2">
+			<ul class="list-group list-group-horizontal-sm">
+				<a style="text-decoration: none" asp-controller="Porosia"
+				   asp-action="Listo" asp-route-statusi="NeProces">
+					<li class="list-group-item @neProcesCss">
+						In proces
+					</li>
+				</a>
+				<a style="text-decoration: none" asp-controller="Porosia"
+				   asp-action="Listo" asp-route-statusi="NePritje">
+				<li class="list-group-item @nePritjeCss">
+						Ne pritje
+					</li>
+				</a>
+				<a style="text-decoration: none" asp-controller="Porosia"
+				   asp-action="Listo" asp-route-statusi="TeKompletuara">
+					<li class="list-group-item @teKompletuaraCss">
+						Te Kompletuara
+					</li>
+				</a>
+				<a style="text-decoration: none" asp-controller="Porosia"
+				   asp-action="Listo" asp-route-statusi="TeAprovuara">
+					<li class="list-group-item @teAprovuaraCss">
+						Te aprovuara
+					</li>
+				</a>
+				<a style="text-decoration: none" asp-controller="Porosia"
+				   asp-action="Listo" asp-route-statusi="TeGjitha">
+					<li class="list-group-item @teGjithaCss">
+						Te gjitha
+					</li>
+				</a>
+			</ul>
+		</div>
+	</div>
+	<br /><br />
+
+	<table id="tblData" class="table table-bordered table-striped" style="width:100%">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Emri</th>
+				<th>NumriITelefonit</th>
+				<th>Email</th>
+				<th>statusiIPorosise</th>
+				<th>Totali</th>
+				<th></th>
+			</tr>
+		</thead>
+	</table>
+</div>
+
+@section Scripts{
+	<script src="~/js/porosia.js"></script>
+}

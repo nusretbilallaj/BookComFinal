@@ -1,0 +1,121 @@
+﻿@model BookCommerceCustom1.ViewModels.ProduktiViewModel
+
+<form method="post" asp-action="ShtoNdrysho" enctype="multipart/form-data">
+	<input asp-for="Produkti.Id" hidden />
+	<input asp-for="Produkti.ImageUrl" hidden />
+
+	<div class="row">
+		<div class="col-10">
+			<div class="border p-3 mt-4 row">
+		<div class="col-12 pb-2">
+					<h2 class="text-primary">@(Model.Produkti.Id != 0 ? "Ndrysho" : "Shto")  Product</h2>
+			<hr />
+		</div>
+		@*<div asp-validation-summary="All"></div>*@
+		<div class="mb-3">
+					<label asp-for="Produkti.Emri"></label>
+					<input asp-for="Produkti.Emri" class="form-control" />
+			<span asp-validation-for="Produkti.Emri" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+		<label asp-for="Produkti.Pershkrimi"></label>
+		<textarea asp-for="Produkti.Pershkrimi" rows="3" class="form-control"></textarea>
+		<span asp-validation-for="Produkti.Pershkrimi" class="text-danger"></span>
+		</div>
+		<div class="mb-3 col-6">
+					<label asp-for="Produkti.Isbn"></label>
+			<input asp-for="Produkti.Isbn" class="form-control" />
+					<span asp-validation-for="Produkti.Isbn" class="text-danger"></span>
+		</div>
+		<div class="mb-3 col-6">
+					<label asp-for="Produkti.Autori"></label>
+					<input asp-for="Produkti.Autori" class="form-control" />
+					<span asp-validation-for="Produkti.Autori" class="text-danger"></span>
+		</div>
+		<div class="mb-3 col-6">
+			<label asp-for="Produkti.CmimiBaze"></label>
+					<input asp-for="Produkti.CmimiBaze" class="form-control" />
+					<span asp-validation-for="Produkti.CmimiBaze" class="text-danger"></span>
+		</div>
+		<div class="mb-3 col-6">
+			<label asp-for="Produkti.Cmimi"></label>
+					<input asp-for="Produkti.Cmimi" class="form-control" />
+					<span asp-validation-for="Produkti.Cmimi" class="text-danger"></span>
+		</div>
+		<div class="mb-3 col-6">
+					<label asp-for="Produkti.Cmimi50"></label>
+					<input asp-for="Produkti.Cmimi50" class="form-control" />
+					<span asp-validation-for="Produkti.Cmimi50" class="text-danger"></span>
+		</div>
+		<div class="mb-3 col-6">
+					<label asp-for="Produkti.Cmimi100"></label>
+					<input asp-for="Produkti.Cmimi100" class="form-control" />
+			<span asp-validation-for="Produkti.Cmimi100" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+					<label asp-for="Produkti.ImageUrl"></label>
+			<input type="file" id="uploadBox" name="file" class="form-control" />
+		</div>
+
+		<div class="mb-3 col-6">
+					<label asp-for="Produkti.KategoriaId"></label>
+					<select asp-for="Produkti.KategoriaId" asp-items="@Model.Kategorite" class="form-select">
+				<option disabled selected>--Select Category--</option>
+			</select>
+					<span asp-validation-for="Produkti.KategoriaId" class="text-danger"></span>
+		</div>
+
+		<div class="mb-3 col-6">
+					<label asp-for="Produkti.MbulesaId"></label>
+			<select asp-for="Produkti.MbulesaId" asp-items="@Model.Mbulesat" class="form-select">
+				<option disabled selected>--Select CoverType--</option>
+			</select>
+					<span asp-validation-for="Produkti.MbulesaId" class="text-danger"></span>
+		</div>
+		<div class="col-12">
+			@if (Model.Produkti.Id != 0)
+			{
+				<button type="submit" class="btn btn-primary" style="width:150px">Ndrysho</button>
+			}
+			else
+			{
+				<button type="submit" onclick="return ValidateInput()" class="btn btn-primary" style="width:150px">Shto</button>
+			}
+			<a asp-controller="Produkti" asp-action="Listo" class="btn btn-secondary" style="width:150px">
+				Back to List
+			</a>
+		</div>
+
+	</div>
+		</div>
+		<div class="col-2 pt-4">
+			<img src="@Model.Produkti.ImageUrl"
+			width="100%" style="border-radius:5px; border:1px solid #bbb9b9" />
+		</div>
+	</div>
+</form>
+
+@section Scripts{
+	@{
+	<partial name="_ValidationScriptsPartial" />
+	}
+<script>
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+      toolbar_mode: 'floating',
+   });
+  
+	function ValidateInput(){
+		if(document.getElementById("uploadBox").value==""){
+			Swal.fire({
+			  icon: 'error',
+			  title: 'Oops...',
+			  text: 'Please upload an Image!',
+			});
+			return false;
+		}
+		return true;
+	}
+</script>
+}

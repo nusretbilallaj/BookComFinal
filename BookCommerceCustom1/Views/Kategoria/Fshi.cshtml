@@ -1,0 +1,30 @@
+﻿@model Kategoria
+<form method="post">
+    <div class="row p-4 mt-4">
+        <div class="border">
+            <div class="row">
+                <h5>Fshi kategorine</h5>
+            </div>
+            <input type="hidden" asp-for="Id"/>
+            <div class="mb-2">
+                <label asp-for="Emri"></label>
+                <input disabled="" asp-for="Emri" class="form-control"/>
+   
+            </div>
+            <div class="mb-2">
+                <label asp-for="Renditja"></label>
+                <input disabled="" asp-for="Renditja" class="form-control"/>
+
+            </div>
+            <input type="submit" class="btn btn-primary" value="Fshi" />
+            <a asp-controller="Kategoria" asp-action="Listo" class="btn btn-secondary">Kthehu</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts
+{
+    @{
+        <partial name="_ValidationScriptsPartial"/>
+    }
+}

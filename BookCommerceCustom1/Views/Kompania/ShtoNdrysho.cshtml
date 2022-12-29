@@ -1,0 +1,68 @@
+﻿@model Kompania
+
+<form method="post" asp-action="ShtoNdrysho">
+	<input asp-for="Id" hidden />
+
+	<div class="row">
+		<div class="col-10">
+			<div class="border p-3 mt-4 row">
+		<div class="col-12 pb-2">
+					<h2 class="text-primary">@(Model.Id != 0 ? "Ndrysho" : "Shto")  Kompani</h2>
+			<hr />
+		</div>
+		@*<div asp-validation-summary="All"></div>*@
+        <div class="mb-3">
+            <label asp-for="Emri"></label>
+            <input asp-for="Emri" class="form-control" />
+            <span asp-validation-for="Emri" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="KodiPostal"></label>
+            <input asp-for="KodiPostal" class="form-control" />
+            <span asp-validation-for="KodiPostal" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="NumriTelefonit"></label>
+            <input asp-for="NumriTelefonit" class="form-control" />
+            <span asp-validation-for="NumriTelefonit" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Qyteti"></label>
+            <input asp-for="Qyteti" class="form-control" />
+            <span asp-validation-for="Qyteti" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Shteti"></label>
+					<input asp-for="Shteti" class="form-control" />
+            <span asp-validation-for="Shteti" class="text-danger"></span>
+        </div>
+        <div class="mb-3 col-6">
+					<label asp-for="Rruga"></label>
+					<input asp-for="Rruga" class="form-control" />
+					<span asp-validation-for="Rruga" class="text-danger"></span>
+		</div>
+		
+		<div class="col-12">
+			@if (Model.Id != 0)
+			{
+				<button type="submit" class="btn btn-primary" style="width:150px">Ndrysho</button>
+			}
+			else
+			{
+				<button type="submit"  class="btn btn-primary" style="width:150px">Shto</button>
+			}
+			<a asp-controller="Kompania" asp-action="Listo" class="btn btn-secondary" style="width:150px">
+				Back to List
+			</a>
+		</div>
+
+	</div>
+		</div>
+    </div>
+</form>
+
+@section Scripts{
+	@{
+	<partial name="_ValidationScriptsPartial" />
+	}
+}
